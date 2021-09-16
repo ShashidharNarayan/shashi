@@ -1,0 +1,30 @@
+<form class="example-form" fxLayout="column">
+  <div>
+    <div fxFlex="95"></div>
+    <div fxFlex="5"><button mat-icon-button [mat-dialog-close]="true" ><mat-icon>close</mat-icon></button></div>
+  </div>
+
+  <div>
+    <div fxLayoutAlign="center center"><h1>Login Page</h1></div>
+  </div>
+
+    <br>
+    <br>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Enter the Email Id</mat-label>
+      <input matInput [(ngModel)]="logObj.email" [ngModelOptions]="{standalone: true}" >
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Enter the Password</mat-label>
+        <input type="password" matInput [(ngModel)]="logObj.password" [ngModelOptions]="{standalone: true}" >
+    </mat-form-field>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;don't have an account .. ? <span style="text-decoration: underline;color: blue;cursor: pointer;" (click)="signUp()" [mat-dialog-close]="true" >register here</span></p>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxFlex="60" ></div>
+        <div fxFlex="15" ><button mat-raised-button color="primary" (click)="login()">Sign In</button></div>
+        <div fxFlex="15" ><button mat-raised-button color="warn" [mat-dialog-close]="true" >Cancel</button></div>
+    </div>
+
+  </form>

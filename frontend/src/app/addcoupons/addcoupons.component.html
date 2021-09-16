@@ -1,0 +1,36 @@
+<form class="example-form" fxLayout="column" (ngSubmit)="addCoupon()">
+    <div>
+        <div fxFlex="95"></div>
+        <div fxFlex="5"><button mat-icon-button [mat-dialog-close]="true">
+                <mat-icon>close</mat-icon>
+            </button></div>
+    </div>
+
+    <div fxLayoutAlign="center center">
+        <h1>Add New Coupons</h1>
+    </div>
+    <br>
+    <br>
+
+    <!-- <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Coupon Name</mat-label>
+        <input matInput [(ngModel)]="couponName" [ngModelOptions]="{standalone: true}">
+    </mat-form-field> -->
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Coupon Code</mat-label>
+        <input matInput  [(ngModel)]="couponObj.couponCode" (ngModelChange)="couponObj.couponCode = $event.toUpperCase()" pattern="[A-Z]*" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Coupon Price</mat-label>
+        <input matInput type="number" [(ngModel)]="couponObj.couponPrice" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxFlex="60"></div>
+        <div fxFlex="15"><button mat-raised-button color="primary" type="submit" [disabled]="!couponObj.couponCode || !couponObj.couponPrice">Add</button></div>
+        <div fxFlex="15"><button mat-raised-button color="warn" [mat-dialog-close]="true" >Cancel</button></div>
+    </div>
+
+</form>

@@ -1,0 +1,30 @@
+<form class="example-form" fxLayout="column" (ngSubmit)="addTheatre()">
+    <div>
+        <div fxFlex="95"></div>
+        <div fxFlex="5"><button mat-icon-button [mat-dialog-close]="true">
+                <mat-icon>close</mat-icon>
+            </button></div>
+    </div>
+
+    <div fxLayoutAlign="center center">
+        <h1>Add New Theatres</h1>
+    </div>
+    <br>
+    <br>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Theatre Name</mat-label>
+        <input matInput [(ngModel)]="theatreName" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+
+    <mat-label>Theatre Image</mat-label>
+    <input type="file" (change)="handleFileInput($event)" id="file" [(ngModel)]="theatreImage"
+        [ngModelOptions]="{standalone: true}">
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxFlex="50"></div>
+        <div fxFlex="15"><button mat-raised-button color="primary" type="submit" [disabled]="!theatreImage || !theatreName">Add</button></div>
+        <div fxFlex="15"><button mat-raised-button color="warn" [mat-dialog-close]="true" >Cancel</button></div>
+    </div>
+
+</form>

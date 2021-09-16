@@ -1,0 +1,47 @@
+<mat-spinner *ngIf="spinner" class="centerOfAll" ></mat-spinner>
+<form class="example-form" fxLayout="column">
+    <div>
+        <div fxFlex="95"></div>
+        <div fxFlex="5"><button mat-icon-button [mat-dialog-close]="true" ><mat-icon>close</mat-icon></button></div>
+      </div>
+    
+    <div fxLayoutAlign="center center"><h1>Register Page</h1></div>
+    <br>
+    <br>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="regObj.name" [ngModelOptions]="{standalone: true}" >
+    </mat-form-field>
+
+        <div>
+            <mat-label>Gender</mat-label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="regObj.gender" [ngModelOptions]="{standalone: true}" >
+                <mat-radio-button value="male">Male</mat-radio-button> &nbsp;&nbsp;
+                <mat-radio-button value="female">Female</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <br>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="regObj.email" [ngModelOptions]="{standalone: true}" >
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput [(ngModel)]="regObj.password" [ngModelOptions]="{standalone: true}" >
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Confirm Password</mat-label>
+        <input type="password" matInput [(ngModel)]="regObj.confirmPassword" [ngModelOptions]="{standalone: true}" >
+    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxFlex="60" ></div>
+        <div fxFlex="15" ><button mat-raised-button color="primary" (click)="signUp()">Sign Up</button></div>
+        <div fxFlex="15" ><button mat-raised-button color="warn" >Cancel</button></div>
+    </div>
+
+  </form>

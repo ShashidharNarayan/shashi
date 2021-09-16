@@ -1,0 +1,142 @@
+<form class="example-form" (ngSubmit)="addShow()" >
+  <div fxLayout="column" style="overflow: scroll;height: 600px;" >
+    <div>
+      <div fxFlex="95"></div>
+      <div fxFlex="5"><button mat-icon-button [mat-dialog-close]="true">
+          <mat-icon>close</mat-icon>
+        </button></div>
+    </div>
+  
+    <div fxLayoutAlign="center center">
+      <h1>Add New Show Time</h1>
+    </div>
+    <br>
+    <br>
+  
+    <div fxLayoutAlign="space-between center">
+      <mat-form-field appearance="fill">
+        <mat-label>Select The Theatre</mat-label>
+        <mat-select matNativeControl [(ngModel)]="showobj.theatre_name" [ngModelOptions]="{standalone: true}" required>
+          <mat-option *ngFor="let theatre of utilityService.theatres" value="{{theatre.theatre_name}}">
+            {{theatre.theatre_name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Select The Movie</mat-label>
+        <mat-select matNativeControl [(ngModel)]="showobj.movie_name" [ngModelOptions]="{standalone: true}" required>
+          <mat-option *ngFor="let movie of utilityService.getAllMovies" value="{{movie.movie_name}}">{{movie.movie_name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+  
+  
+    <div fxLayoutAlign="space-between center">
+      <mat-form-field appearance="fill">
+        <mat-label>Show start date</mat-label>
+        <input matInput [matDatepicker]="picker1" [(ngModel)]="showobj.show_date" [ngModelOptions]="{standalone: true}"
+          required>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+  
+      <!-- <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Show End Date</mat-label>
+        <input matInput [matDatepicker]="picker2" [(ngModel)]="showobj.end_date" [ngModelOptions]="{standalone: true}"
+          required>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field> -->
+    </div>
+  
+    <div>
+  
+      <!-- <mat-label><b>Show Start Time</b></mat-label> &nbsp;&nbsp;&nbsp;&nbsp;
+      <input [ngxMatTimepicker]="timepicker1" [(ngModel)]="showobj.start_time" [ngModelOptions]="{standalone: true}" required >
+      <ngx-mat-timepicker #timepicker1></ngx-mat-timepicker> -->
+    </div>
+    <br>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div>
+        <mat-label><b>Add Movie Start Time</b></mat-label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <ngb-timepicker [(ngModel)]="showobj.start_time" [ngModelOptions]="{standalone: true}" required></ngb-timepicker>
+      </div>
+      <!-- <div>
+        <mat-label><b>Add Movie End Time</b></mat-label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <ngb-timepicker [(ngModel)]="showobj.end_time" [ngModelOptions]="{standalone: true}" required></ngb-timepicker>
+      </div> -->
+  
+      <!-- <input [ngxMatTimepicker]="timepicker2" [(ngModel)]="showobj.end_time" [ngModelOptions]="{standalone: true}" required >
+      <ngx-mat-timepicker #timepicker2></ngx-mat-timepicker> -->
+    </div>
+    <br>
+    <div>
+  
+      <!-- <mat-label><b>Seats</b>&nbsp;&nbsp;&nbsp;&nbsp;</mat-label>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <input matInput type="number" [(ngModel)]="showobj.number_of_seats" [ngModelOptions]="{standalone: true}"
+          required>
+      </mat-form-field> -->
+  
+      <div>
+        <mat-label><b>Enter the seat limit:</b></mat-label>
+      </div>
+      <br>
+      <div fxLayout="row">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Seat Limit</mat-label>
+          <input matInput type="number" [(ngModel)]="showobj.seatlimit" [ngModelOptions]="{standalone: true}" required>
+        </mat-form-field>
+      </div>
+      <br>
+      <div>
+        <mat-label><b>Enter the total number of seats:</b></mat-label>
+      </div>
+      <br>
+      <div fxLayoutAlign="space-between center">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Silver Category Seats</mat-label>
+          <input matInput type="number" [(ngModel)]="showobj.silver_category_seats" [ngModelOptions]="{standalone: true}" required>
+        </mat-form-field>
+    
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Gold Category Seats</mat-label>
+          <input matInput type="number" [(ngModel)]="showobj.gold_category_seats" [ngModelOptions]="{standalone: true}" required>
+        </mat-form-field>
+      </div>
+  
+    </div>
+    <br>
+    <div>
+      <mat-label><b>Set Price:</b></mat-label>
+    </div>
+    <br>
+    <div fxLayoutAlign="space-between center">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Silver Category Price</mat-label>
+        <input matInput type="number" [(ngModel)]="showobj.silver_category_price" [ngModelOptions]="{standalone: true}" required>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Gold Category Price</mat-label>
+        <input matInput type="number" [(ngModel)]="showobj.gold_category_price" [ngModelOptions]="{standalone: true}" required>
+      </mat-form-field>
+    </div>
+  
+    <!-- <div fxLayoutAlign="center center">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Royal Class</mat-label>
+        <input matInput type="number" [(ngModel)]="showobj.royal_class_price" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+    </div> -->
+  
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxFlex="60"></div>
+      <div fxFlex="15"><button mat-raised-button color="primary" type="submit"
+          [disabled]="!showobj.gold_category_price || !showobj.silver_category_price || !showobj.silver_category_seats || !showobj.gold_category_seats || !showobj.show_date || !showobj.movie_name || !showobj.theatre_name">Add</button></div>
+      <div fxFlex="15"><button mat-raised-button color="warn" [mat-dialog-close]="true">Cancel</button></div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,111 @@
+<!-- <app-toolbar></app-toolbar> -->
+<br>
+    <div fxLayoutAlign="center center">
+        <h2>Admin Dashboard</h2>
+    </div>
+<br>
+<div >
+    <div fxFlex="10"></div>
+    <div fxFlex="80" fxLayoutAlign="center center">
+        <div fxFlex="15">
+            <mat-card class="example-card" >
+                <div style="font-size: 20px;" fxLayout="row">Movies</div>
+                <br>
+                <div fxLayout="row" fxLayoutAlign="end center">
+                    <button mat-mini-fab color="primary" (click)="openAddMovieDialog()" aria-label="Example icon button with a menu icon">
+                        <mat-icon>add</mat-icon>
+                      </button>
+                </div>
+          </mat-card>
+        </div>
+        <div fxFlex="5"></div>
+        <div fxFlex="15">
+            <mat-card class="example-card">
+                <div fxLayout="row" style="font-size: 20px;">Show Timings</div>
+                <br>
+                <div fxLayout="row" fxLayoutAlign="end center">
+                    <button mat-mini-fab color="primary" (click)="openAddShowTimeDialog()" aria-label="Example icon button with a menu icon">
+                        <mat-icon>add</mat-icon>
+                      </button>
+                </div>
+          </mat-card>
+        </div>
+        <div fxFlex="5"></div>
+        <div fxFlex="15">
+            <mat-card class="example-card">
+                <div fxLayout="row" style="font-size: 20px;">Theatres</div>
+                <br>
+                <div fxLayout="row" fxLayoutAlign="end center">
+                    <button mat-mini-fab color="primary" (click)="openAddTheatreDialog()" aria-label="Example icon button with a menu icon">
+                        <mat-icon>add</mat-icon>
+                      </button>
+                </div>
+          </mat-card>
+        </div>
+        <div fxFlex="5"></div>
+        <div fxFlex="15">
+            <mat-card class="example-card">
+                <div fxLayout="row" style="font-size: 20px;">Coupons </div>
+                <br>
+                <div fxLayout="row" fxLayoutAlign="end center">
+                    <button mat-mini-fab color="primary" (click)="openAddCouponsDialog()" aria-label="Example icon button with a menu icon">
+                        <mat-icon>add</mat-icon>
+                      </button>
+                </div>
+          </mat-card>
+        </div>
+        <div fxFlex="5"></div>
+        <div fxFlex="15">
+            <mat-card class="example-card">
+                <div fxLayout="row" style="font-size: 20px;">Add Admin</div>
+                <br>
+                <div fxLayout="row" fxLayoutAlign="end center">
+                    <button mat-mini-fab color="primary" (click)="is_add_admin = true" aria-label="Example icon button with a menu icon">
+                        <mat-icon>add</mat-icon>
+                      </button>
+                </div>
+          </mat-card>
+        </div>
+    </div>
+    <div fxFlex="10" ></div>
+</div>
+<br>
+
+<mat-card *ngIf="is_add_admin">
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-form-field class="example-full-width" appearance="fill" style="width: 40%;">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" >
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end center" style="width: 60%;">
+        <button mat-raised-button color="primary" (click)="addAdmin()">Add Admin</button>
+    </div>
+</mat-card>
+
+<!-- <mat-card *ngIf="selectedCategory == 'movie'" class="example-card">
+    <mat-card fxLayoutAlign="center center"><h2>Movies</h2></mat-card>
+    <mat-card>
+        <div fxLayout="row" style="font-size: 16px;">
+            <div fxFlex="5" >No</div>
+            <div fxFlex="20" fxLayoutAlign="start start">Name</div>
+            <div fxFlex="20" fxLayoutAlign="start start" >Details</div>
+            <div fxFlex="20" fxLayoutAlign="start start" >Image</div>
+            <div fxFlex="20" fxLayoutAlign="start start" >Trailer</div>
+            <div fxFlex="5"><button mat-raised-button color="primary" (click)="openAddMovieDialog()" > Add Movie</button></div>
+        </div>
+    </mat-card>
+    <mat-card *ngFor="let movie of utilityService.movies; let i = index" style="font-size: 16px;">
+        <div >
+            <div fxFlex="5" fxLayoutAlign="start center" >{{i+1}}</div> 
+            <div fxFlex="20" fxLayoutAlign="start center" ><i>{{movie.movie_name}}</i></div>
+            <div fxFlex="20" fxLayoutAlign="start center" ><i>{{movie.movie_detail}}</i></div>
+            <div fxFlex="20" fxLayoutAlign="start center" ><mat-card><img mat-card-image src="{{movie.movie_imageurl}}" style="height: 100px;"></mat-card></div>
+            <div fxFlex="20" fxLayoutAlign="start center" ><iframe [src]="utilityService.getSanitizedURL(movie.movie_trailer)" height="100px"></iframe></div>
+            <div fxFlex="5" fxLayoutAlign="start center" > <button mat-icon-button ><mat-icon>edit</mat-icon></button></div>
+            <div fxFlex="5" fxLayoutAlign="start center" > <button mat-icon-button (click)="deleteMovie(i)"><mat-icon>delete</mat-icon></button></div>
+            <div fxFlex="5" ></div>
+        </div>
+    </mat-card>
+</mat-card> -->

@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+        <div fxFlex="20">
+          <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+        </div>
+        <div fxFlex="60" fxLayoutAlign="center center"><span>Online Ticket Booking System</span></div>
+        <div fxFlex="20" fxLayoutAlign="end center">
+          <div *ngIf="!(utilityService.loggedInObj && utilityService.loggedInObj.email)">
+            <button mat-raised-button color="accent" (click)="openDialog()">Sign In</button>
+          </div>
+          <div *ngIf="(utilityService.loggedInObj && utilityService.loggedInObj.email)">
+            <button mat-mini-fab matTooltip="Are you sure do you want to logout ...?" color="accent" aria-label="Example icon button with a delete icon" (click)="logout()" >
+              <mat-icon>person</mat-icon>
+            </button>
+          </div>
+        </div>
+  </mat-toolbar>
+
+  <div class="example-container" [class.example-is-mobile]="mobileQuery.matches" >
+    <mat-sidenav-container class="example-sidenav-container" style="height: 1000px"
+                           [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+      <mat-sidenav style="width: 10%;" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                   [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+        <mat-nav-list>
+          <a mat-list-item routerLink="" >Home</a>
+          <!-- <a mat-list-item routerLink="" >Movies</a> -->
+          <a mat-list-item *ngIf="utilityService.loggedInObj && utilityService.loggedInObj.email"  routerLink="/bookings" >Bookings</a>
+          <a mat-list-item *ngIf="utilityService.loggedInObj && utilityService.loggedInObj.is_admin" routerLink="/admin" >Admin</a>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>

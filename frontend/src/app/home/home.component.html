@@ -1,0 +1,51 @@
+<br>
+    <div fxLayoutAlign="center center">
+        <h2>Recommended Movies</h2>
+    </div>
+<br>
+
+<!-- <mat-card class="example-card">
+    <mat-card>
+        <div fxLayout="row" style="font-size: 16px;">
+            <div fxFlex="5" >No</div>
+            <div fxFlex="20" fxLayoutAlign="start start">Name</div>
+            <div fxFlex="20" fxLayoutAlign="start start" >Details</div>
+            <div fxFlex="20" fxLayoutAlign="start start" >Image</div>
+            <div fxFlex="20" fxLayoutAlign="start start" >Trailer</div>
+            <div fxFlex="5"></div>
+        </div>
+    </mat-card>
+    <mat-card *ngFor="let movie of utilityService.movies; let i = index" style="font-size: 16px;">
+        <div >
+            <div fxFlex="5" fxLayoutAlign="start center" >{{i+1}}</div> 
+            <div fxFlex="20" fxLayoutAlign="start center" ><i>{{movie.movie_name}}</i></div>
+            <div fxFlex="20" fxLayoutAlign="start center" ><i>{{movie.movie_detail}}</i></div>
+            <div fxFlex="20" fxLayoutAlign="start center" ><mat-card><img mat-card-image src="{{movie.movie_imageurl}}" style="height: 100px;width: 150px;"></mat-card></div>
+            <div fxFlex="20" fxLayoutAlign="start center" ><iframe [src]="utilityService.getSanitizedURL(movie.movie_trailer)" height="100px"></iframe></div>
+            <div fxFlex="5" ></div>
+        </div>
+    </mat-card>
+</mat-card> -->
+
+<mat-card fxLayoutAlign="center center">
+    <br>
+    <br>
+    <div fxFlex="20" fxLayoutAlign="end center" >
+        <button [disabled]="pageNumber <= 1" mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="previousPage()">
+        <mat-icon>arrow_back_ios</mat-icon>
+      </button>
+    </div>
+    <div fxFlex="40" fxLayoutAlign="center center" *ngFor="let movie of utilityService.movies; let i = index" >
+        <mat-card style="cursor: pointer;width: 200px;margin: 0px 20px 0px 20px;" (click)="utilityService.selectedMovie = movie" routerLink="/movie/{{movie.movie_name}}" >
+            <img mat-card-image src="{{movie.movie_imageurl}}" style="height: 250px;width: 100%;padding: 0px 0px 0px 17px;">
+            <div><h2>{{movie.movie_name}}</h2></div>
+        </mat-card>
+        
+    </div>
+    <div fxFlex="20" fxLayoutAlign="start center" >
+        <button [disabled]="pageNumber >= utilityService.moviesCount" mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="nextPage()">
+        <mat-icon>arrow_forward_ios</mat-icon>
+      </button>
+    </div>
+    <br>
+</mat-card>

@@ -1,0 +1,122 @@
+<mat-spinner *ngIf="spinner" class="centerOfAll" ></mat-spinner>
+<mat-card fxLayoutAlign="center center" fxLayout="column">
+    <br>
+    <br>
+    <div fxFlexFill>
+        <div fxFlex="20"></div>
+        <div fxFlex="60" fxLayoutAlign="center center">
+            <mat-card *ngIf="movie" style="cursor: pointer;width: 100%;margin: 0px 20px 0px 20px;" fxLayout="row">
+                <div fxFlex="30">
+                    <img mat-card-image src="{{movie.movie_imageurl}}"
+                        style="height: 250px;width: 100%;padding: 25px 0px 0px 17px;">
+                    <div>
+                        <h2>{{movie.movie_name}}</h2>
+                    </div>
+                </div>
+                <div fxFlex="20"></div>
+                <div fxFlex="40">
+                    <iframe [src]="utilityService.getSanitizedURL(movie.movie_trailer)" width="100%"
+                        height="80%"></iframe>
+                </div>
+            </mat-card>
+        </div>
+        <div fxFlex="10"></div>
+    </div>
+    <br>
+    <div fxFlexFill *ngIf="movieShows && movieShows.length > 0">
+        <div fxLayoutAlign="center center">
+            <h2>Book Tickets</h2>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex="20"></div>
+            <div fxFlex="60" fxLayout="column">
+                <div *ngFor="let movie of movieShows; let i=index">
+                    <mat-card *ngIf="!isShowTickets" fxFlexFill>
+                        <div fxFlex="25" fxLayoutAlign="start center">{{movie.theatre_name}}</div>
+                        <div fxFlex="15" fxLayoutAlign="start center">{{movie.show_date | date: 'dd/MM/yyyy'}}</div>
+                        <div fxFlex="20" >
+                            <button mat-stroked-button color="primary"
+                                (click)="selectedShow=movie;showTickets(movie.movie_start_time, i);">{{movie.movie_start_time}}</button>
+                        </div>
+                        <div fxFlex="40">
+                            {{getTimeDifference(movie.show_date)}}
+                        </div>
+                    </mat-card>
+                </div>
+
+                <div *ngIf="isShowTickets">
+                    <mat-card>
+                        <div fxFlex="25"></div>
+                        <div fxFlex="50">
+                            <div><b>Silver Category</b></div>
+                            <br>
+                            <div fxLayout="row" *ngFor="let seat of selectedShow.seats;let i = index">
+                                <div *ngFor="let ticket of seat; let j = index">
+                                    <div fxLayout="row" *ngIf="ticket.category == 'silver'">
+                                        <button mat-stroked-button 
+                                        [disabled]="ticket.email != ''" 
+                                        [ngClass]="ticket.is_booked == true ? 'changeColor' : 'normalColor'" 
+                                        (click)="ticket.is_booked = !ticket.is_booked; selectTicket(ticket, i, j, selectedShow)" 
+                                        style="margin: 5px 5px 5px 5px;cursor: pointer;padding: 15px 0px 15px 0px;"></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div><b>Gold Category</b></div>
+                            <br>
+                            <div fxLayout="row" *ngFor="let seat of selectedShow.seats;let i = index">
+                                <div *ngFor="let ticket of seat; let j = index">
+                                    <div fxLayout="row" *ngIf="ticket.category == 'gold'" >
+                                        <button mat-stroked-button 
+                                        [disabled]="ticket.email != ''" 
+                                        [ngClass]="ticket.is_booked == true ? 'changeColor' : 'normalColor'" 
+                                        (click)="ticket.is_booked = !ticket.is_booked; selectTicket(ticket, i, j, selectedShow)" 
+                                        style="margin: 5px 5px 5px 5px;cursor: pointer;padding: 15px 0px 15px 0px;"></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <div *ngIf="totalAmount > 0">
+                                <div fxLayout="row" fxLayoutAlign="center center" >
+                                    <div fxLayoutAlign="center center">
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Coupon Code</mat-label>
+                                            <input matInput [(ngModel)]="couponcode" [ngModelOptions]="{standalone: true}" required>
+                                          </mat-form-field>
+                                        </div>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div fxLayoutAlign="center center" >
+                                            <button mat-raised-button color="primary" [disabled]="!couponcode" (click)="addCode()" >Add Code</button>
+                                        </div>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div fxLayoutAlign="center center" >
+                                            <button mat-raised-button color="warn" [disabled]="!couponcode" (click)="removeCode()" >Remove Code</button>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="couponPrice > 0"><b>You will get {{couponPrice}} Rs off.</b></div>
+                                    <br>
+                                    <br>
+                                <span><b>Total Amount : {{totalAmount}}</b></span>
+                            </div>
+                        </div>
+                        <div fxFlex="25"></div>
+                    </mat-card>
+                </div>
+
+            </div>
+
+
+
+            <div fxFlex="20"></div>
+        </div>
+        <br>
+        <div *ngIf="isShowTickets" fxLayoutAlign="center center" fxLayoutGap="2%">
+            <button mat-flat-button color="primary"(click)="bookTicket()">Book</button>
+            <button mat-flat-button color="warn" (click)="cancelTicketBooking()">Cancel</button>
+        </div>
+    </div>
+    <div *ngIf="!movieShows || movieShows.length == 0" fxLayoutAlign="center center">
+        <h2>No Shows At</h2>
+    </div>
+</mat-card>

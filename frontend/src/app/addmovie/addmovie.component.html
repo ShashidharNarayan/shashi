@@ -1,0 +1,52 @@
+<form class="example-form" fxLayout="column" (ngSubmit)="addMovie(movieObj)">
+  <div>
+    <div fxFlex="95"></div>
+    <div fxFlex="5"><button mat-icon-button [mat-dialog-close]="true">
+        <mat-icon>close</mat-icon>
+      </button></div>
+  </div>
+
+  <div fxLayoutAlign="center center">
+    <h1>Add New Movie</h1>
+  </div>
+  <br>
+  <br>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Movie Name</mat-label>
+    <input matInput [(ngModel)]="movieObj.movieName" [ngModelOptions]="{standalone: true}">
+  </mat-form-field>
+
+  <mat-label>Add Movie Poster</mat-label>
+  <input type="file" id="file" (change)="onChange($event)" [(ngModel)]="movieObj.file"
+    [ngModelOptions]="{standalone: true}" required>
+
+  <br>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Movie Trailer link from you tube</mat-label>
+    <input matInput [(ngModel)]="movieObj.trailerLink" [ngModelOptions]="{standalone: true}">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Movie details</mat-label>
+    <textarea matInput [(ngModel)]="movieObj.movieDetails" [ngModelOptions]="{standalone: true}"></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Movie screened date</mat-label>
+    <input matInput [matDatepicker]="picker3" [(ngModel)]="movieObj.screened_at" [ngModelOptions]="{standalone: true}"
+      required>
+    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+    <mat-datepicker #picker3></mat-datepicker>
+  </mat-form-field>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxFlex="60"></div>
+    <div fxFlex="15"><button mat-raised-button color="primary" type="submit"
+        [disabled]="!movieObj.movieDetails || !movieObj.trailerLink || !movieObj.movieName || !movieObj.file">Add</button>
+    </div>
+    <div fxFlex="15"><button mat-raised-button color="warn" [mat-dialog-close]="true">Cancel</button></div>
+  </div>
+
+</form>

@@ -1,0 +1,29 @@
+<br>
+<br>
+<div *ngIf="bookings && bookings.length > 0">
+    <div>
+        <div fxFlex="25"></div>
+        <div fxFlex="50">
+            <mat-card fxLayoutAlign="center center">
+                <div fxFlex="5"><b>No</b></div>
+                <div fxFlex="20"><b>Movie Name</b></div>
+                <div fxFlex="15"><b>Date</b></div>
+                <div fxFlex="15"><b>Start Time</b></div>
+                <div fxFlex="15"><b>Ticket Number</b></div>
+            </mat-card>
+            <mat-card *ngFor="let booking of bookings; let i = index" fxLayoutAlign="center center">
+                <div fxLayout="row" *ngIf="booking.my_bookings.movie_name == ''" fxLayoutAlign="center center">No
+                    Bookings At</div>
+                <div *ngIf="booking.my_bookings.movie_name != ''" fxFlex="5">{{ i + 1}}</div>
+                <div *ngIf="booking.my_bookings.movie_name != ''" fxFlex="20">{{booking.my_bookings.movie_name}}</div>
+                <div *ngIf="booking.my_bookings.movie_name != ''" fxFlex="15">{{booking.my_bookings.date | date:
+                    'dd/MM/yyyy'}}</div>
+                <div *ngIf="booking.my_bookings.movie_name != ''" fxFlex="15">{{booking.my_bookings.movie_time}}</div>
+                <div *ngIf="booking.my_bookings.movie_name != ''" fxFlex="15">
+                    <span>{{booking.my_bookings.seats}}</span>
+                </div>
+            </mat-card>
+        </div>
+        <div fxFlex="25"></div>
+    </div>
+</div>
